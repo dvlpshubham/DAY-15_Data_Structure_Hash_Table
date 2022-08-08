@@ -1,3 +1,12 @@
+/*@Purpose : Remove avoidable word from the phrase
+             “Paranoids are not paranoid because they are paranoid but because they keep putting themselves
+             deliberately into paranoid avoidable situations”
+ * - Use LinkedList to do the Hash Table Operation like here the removal of word avoidable
+ * - To do this create MyMapNode with Key Value Pair and create LinkedList of MyMapNode
+ *@File : Data Structure Using Hash Table
+ *@Author : Shubham Raj
+ */
+
 package com.bridgelabz.hashtable;
 
 public class HashTableImplementation<K, V> {
@@ -48,6 +57,25 @@ public class HashTableImplementation<K, V> {
         } else {
             return myMapNode.getValue();
         }
+    }
+
+    // Remove "avoidable" from hashtable
+    public void remove(K word) {
+        Node<K, V> currentNode = head;
+        Node<K, V> previousNode = null;
+        while (currentNode != null && currentNode.getKey().equals(word)) {
+            head = currentNode.getNext();
+            return;
+        }
+        while (currentNode != null && !(currentNode.getKey().equals(word))) {
+            previousNode = currentNode;
+            currentNode = currentNode.getNext();
+        }
+        if (currentNode != null) {
+            previousNode.next = currentNode.next;
+        }
+        if (currentNode == null)
+            System.out.println("Word not found!");
 
     }
 
